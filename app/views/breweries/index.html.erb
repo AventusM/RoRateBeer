@@ -24,5 +24,10 @@
     <% end %>
   </tbody>
 </table>
+
 <p>Amount of breweries &ndash; <b><%= @breweries.count %></b></p>
-<%= link_to 'New Brewery', new_brewery_path %>
+
+<!-- beers_path, new_beer_path yms yleisesti käytössä railsin magian avulla?? -->
+<!-- beers_path, new_beer_path yms yleisesti käytössä railsin magian avulla?? -->
+<%= link_to 'New Brewery', new_brewery_path %> |
+<%= link_to 'Beer List', beers_path %>
