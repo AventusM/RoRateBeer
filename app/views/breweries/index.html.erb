@@ -14,16 +14,15 @@
   <tbody>
     <% @breweries.each do |brewery| %>
       <tr>
-        <td><%= brewery.name %></td>
+        <!-- Changing default 'Show' to what it is to make comprehension easier -->
+        <td><%= link_to brewery.name, brewery_path(brewery.id) %></td>
         <td><%= brewery.year %></td>
-        <td><%= link_to 'Show', brewery %></td>
+        <!-- <td><%= link_to 'Show', brewery_path(brewery.id) %></td> -->
         <td><%= link_to 'Edit', edit_brewery_path(brewery) %></td>
         <td><%= link_to 'Destroy', brewery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
+<p>Amount of breweries &ndash; <b><%= @breweries.count %></b></p>
 <%= link_to 'New Brewery', new_brewery_path %>
