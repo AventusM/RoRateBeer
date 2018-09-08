@@ -11,6 +11,9 @@ class BreweriesController < ApplicationController
   # GET /breweries/1
   # GET /breweries/1.json
   def show
+    # Avataan kurssimateriaalin mukaisesti tämä auki (redundant)
+    @brewery = Brewery.find(params[:id])
+    render :show
   end
 
   # GET /breweries/new

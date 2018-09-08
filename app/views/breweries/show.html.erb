@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<h2>
+  <%= @brewery.name%>
+</h2>
+
 <p>
-  <strong>Name:</strong>
-  <%= @brewery.name %>
+  <i>Established in: <%= @brewery.year %></i>
 </p>
 
 <p>
-  <strong>Year:</strong>
-  <%= @brewery.year %>
+  Current selection consists of <b><%= @brewery.beers.count %></b> beer(s)
 </p>
 
+<!-- Seems like @brewery finds id implicitly -->
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
 <%= link_to 'Back', breweries_path %>
