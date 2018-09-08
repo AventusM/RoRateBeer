@@ -12,6 +12,14 @@
   Current selection consists of <b><%= @brewery.beers.count %></b> beer(s)
 </p>
 
+<p>
+  <% @brewery.beers.each do |beer| %>
+  <%= link_to beer.name, beer_path(beer.id) %>
+  <% end %>
+</p>
+
+<!-- Tuo esiin consolitulostuksen <%= @brewery.beers.to_a %> -->
+
 <!-- Seems like @brewery finds id implicitly -->
 <%= link_to 'Edit', edit_brewery_path(@brewery) %> |
 <%= link_to 'Back', breweries_path %>
