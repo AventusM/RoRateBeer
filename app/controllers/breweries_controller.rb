@@ -5,6 +5,8 @@ class BreweriesController < ApplicationController
   # GET /breweries.json
   def index
     @breweries = Brewery.all
+
+    # render :panimot -- renderöi tiedoston views/breweries/panimot.html.erb (jos sellainen siis olemassa)
     render :index   # renderöi hakemistossa view/breweries olevan näkymätemplaten index.html.erb
   end
 
