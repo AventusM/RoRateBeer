@@ -8,6 +8,11 @@ body {
   line-height: 18px;
 }
 
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
