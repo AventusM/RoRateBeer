@@ -1,0 +1,354 @@
+Panimon lisäys
+BrewDog = Brewery.create(name: 'BrewDog', year: 2007)
+
+Oluiden lisäys
+BrewDog.beers.create(name: 'Punk IPA', style: 'IPA') #Suoritustapa 1
+Beer.create(name: 'Nanny State', style: 'lowalcohol', brewery_id: BrewDog.id) #Suoritustapa 2
+
+Ratingien lisäys
+Punk IPA:lle
+BrewDog.beers.first.ratings.create(score: 50)
+BrewDog.beers.first.ratings.create(score: 75)
+
+Nanny Statelle
+BrewDog.beers.second.ratings.create(score: 100)
+BrewDog.beers.second.ratings.create(score: 25)
+
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+KONSOLISESSIO KOKONAISUUDESSAAN ALLA ____________________________________________________________________________________________
+
+amoroz@home:~/Desktop/RoRateBeer$ rails g model Rating score:integer beer_id:integer
+Running via Spring preloader in process 13486
+      invoke  active_record
+      create    db/migrate/20180911145701_create_ratings.rb
+      create    app/models/rating.rb
+      invoke    test_unit
+      create      test/models/rating_test.rb
+      create      test/fixtures/ratings.yml
+amoroz@home:~/Desktop/RoRateBeer$ rails db:migrate
+== 20180911145701 CreateRatings: migrating ====================================
+-- create_table(:ratings)
+   -> 0.0016s
+== 20180911145701 CreateRatings: migrated (0.0017s) ===========================
+
+amoroz@home:~/Desktop/RoRateBeer$ rails c
+Running via Spring preloader in process 13676
+Loading development environment (Rails 5.2.1)
+[1] pry(main)> first = Beer.first
+  Beer Load (0.2ms)  SELECT  "beers".* FROM "beers" ORDER BY "beers"."id" ASC LIMIT ?  [["LIMIT", 1]]
+=> #<Beer:0x000055f4da8a2030
+ id: 1,
+ name: "Iso 3",
+ style: "Lager",
+ brewery_id: 1,
+ created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>
+[2] pry(main)> first.ratings
+  Rating Load (0.1ms)  SELECT "ratings".* FROM "ratings" WHERE "ratings"."beer_id" = ?  [["beer_id", 1]]
+=> []
+[3] pry(main)> BrewDog = Brewery.create(name: 'BrewDog', year: 2007)
+   (0.1ms)  begin transaction
+  Brewery Create (0.4ms)  INSERT INTO "breweries" ("name", "year", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "BrewDog"], ["year", 2007], ["created_at", "2018-09-11 15:19:08.563045"], ["updated_at", "2018-09-11 15:19:08.563045"]]
+   (74.6ms)  commit transaction
+=> #<Brewery:0x000055f4daa76f78
+ id: 5,
+ name: "BrewDog",
+ year: 2007,
+ created_at: Tue, 11 Sep 2018 15:19:08 UTC +00:00,
+ updated_at: Tue, 11 Sep 2018 15:19:08 UTC +00:00>
+[4] pry(main)> Beer
+=> Beer(id: integer, name: string, style: string, brewery_id: integer, created_at: datetime, updated_at: datetime)
+[5] pry(main)> Beer.all
+  Beer Load (0.3ms)  SELECT "beers".* FROM "beers"
+=> [#<Beer:0x000055f4da9dd7b0
+  id: 1,
+  name: "Iso 3",
+  style: "Lager",
+  brewery_id: 1,
+  created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>,
+ #<Beer:0x000055f4da9dd670
+  id: 2,
+  name: "Karhu",
+  style: "Lager",
+  brewery_id: 1,
+  created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>,
+ #<Beer:0x000055f4da9dd530
+  id: 3,
+  name: "Tuplahumala",
+  style: "Lager",
+  brewery_id: 1,
+  created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>,
+ #<Beer:0x000055f4da9dd3f0
+  id: 4,
+  name: "Huvila Pale Ale",
+  style: "Pale Ale",
+  brewery_id: 2,
+  created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>,
+ #<Beer:0x000055f4da9dd2b0
+  id: 5,
+  name: "X Porter",
+  style: "Porter",
+  brewery_id: 2,
+  created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>,
+ #<Beer:0x000055f4da9dd170
+  id: 6,
+  name: "Hefeweizen",
+  style: "Weizen",
+  brewery_id: 3,
+  created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>,
+ #<Beer:0x000055f4da9dcfe0
+  id: 7,
+  name: "Helles",
+  style: "Lager",
+  brewery_id: 3,
+  created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+  updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>]
+[6] pry(main)> ls
+ActiveSupport::ToJsonWithActiveSupportEncoder#methods: to_json
+Rails::ConsoleMethods#methods: app  controller  helper  new_session  reload!
+self.methods: inspect  to_s
+locals: _  __  _dir_  _ex_  _file_  _in_  _out_  _pry_  first
+[7] pry(main)> Beer.last
+  Beer Load (0.3ms)  SELECT  "beers".* FROM "beers" ORDER BY "beers"."id" DESC LIMIT ?  [["LIMIT", 1]]
+=> #<Beer:0x000055f4d8329b50
+ id: 7,
+ name: "Helles",
+ style: "Lager",
+ brewery_id: 3,
+ created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>
+[8] pry(main)> Beer.create(name: 'Punk IPA', style: 'IPA')
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+=> #<Beer:0x000055f4d84890b8
+ id: nil,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: nil,
+ created_at: nil,
+ updated_at: nil>
+[9] pry(main)> Beer.last
+  Beer Load (0.3ms)  SELECT  "beers".* FROM "beers" ORDER BY "beers"."id" DESC LIMIT ?  [["LIMIT", 1]]
+=> #<Beer:0x000055f4d9b25e70
+ id: 7,
+ name: "Helles",
+ style: "Lager",
+ brewery_id: 3,
+ created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>
+[10] pry(main)> Beer.create(name: 'Punk IPA', style: 'IPA')
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+=> #<Beer:0x000055f4d9dd6700
+ id: nil,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: nil,
+ created_at: nil,
+ updated_at: nil>
+[11] pry(main)> PunkIpa = Beer.create(name: 'Punk IPA', style: 'IPA')
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+=> #<Beer:0x00007f6da01ece58
+ id: nil,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: nil,
+ created_at: nil,
+ updated_at: nil>
+[12] pry(main)> reload!
+Reloading...
+=> true
+[13] pry(main)> Beer.create(name: 'Punk IPA', style: 'IPA')
+   (0.0ms)  begin transaction
+   (0.1ms)  rollback transaction
+=> #<Beer:0x000055f4da8ee480
+ id: nil,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: nil,
+ created_at: nil,
+ updated_at: nil>
+[14] pry(main)> q
+NameError: undefined local variable or method `q' for main:Object
+from (pry):13:in `__pry__'
+[15] pry(main)> 
+amoroz@home:~/Desktop/RoRateBeer$ reload!
+No command 'reload!' found, did you mean:
+ Command 'reload' from package 'upstart' (main)
+reload!: command not found
+amoroz@home:~/Desktop/RoRateBeer$ rails c
+Running via Spring preloader in process 14404
+Loading development environment (Rails 5.2.1)
+[1] pry(main)> Beer.last
+  Beer Load (0.1ms)  SELECT  "beers".* FROM "beers" ORDER BY "beers"."id" DESC LIMIT ?  [["LIMIT", 1]]
+=> #<Beer:0x000055f4da9778e8
+ id: 7,
+ name: "Helles",
+ style: "Lager",
+ brewery_id: 3,
+ created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>
+[2] pry(main)> Beer.create(name: 'Punk IPA', style: 'IPA')
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+=> #<Beer:0x000055f4da8fd8e0
+ id: nil,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: nil,
+ created_at: nil,
+ updated_at: nil>
+[3] pry(main)> 
+amoroz@home:~/Desktop/RoRateBeer$ rails db:migrate
+amoroz@home:~/Desktop/RoRateBeer$ rails db:migrate
+amoroz@home:~/Desktop/RoRateBeer$ rails c
+Running via Spring preloader in process 14556
+Loading development environment (Rails 5.2.1)
+[1] pry(main)> Beer.last
+  Beer Load (0.2ms)  SELECT  "beers".* FROM "beers" ORDER BY "beers"."id" DESC LIMIT ?  [["LIMIT", 1]]
+=> #<Beer:0x000055f4da911ea8
+ id: 7,
+ name: "Helles",
+ style: "Lager",
+ brewery_id: 3,
+ created_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00,
+ updated_at: Sat, 08 Sep 2018 07:43:06 UTC +00:00>
+[2] pry(main)> BrewDog
+NameError: uninitialized constant BrewDog
+from /home/amoroz/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/bootsnap-1.3.1/lib/bootsnap/load_path_cache/core_ext/active_support.rb:53:in `block in load_missing_constant'
+[3] pry(main)> BrewDog = Brewery.find_by(name: 'BrewDog')
+  Brewery Load (0.1ms)  SELECT  "breweries".* FROM "breweries" WHERE "breweries"."name" = ? LIMIT ?  [["name", "BrewDog"], ["LIMIT", 1]]
+=> #<Brewery:0x000055f4da551d68
+ id: 5,
+ name: "BrewDog",
+ year: 2007,
+ created_at: Tue, 11 Sep 2018 15:19:08 UTC +00:00,
+ updated_at: Tue, 11 Sep 2018 15:19:08 UTC +00:00>
+[4] pry(main)> BrewDog.beers.create(name: 'Punk IPA', style: 'IPA')
+   (0.1ms)  begin transaction
+  Beer Create (0.3ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Punk IPA"], ["style", "IPA"], ["brewery_id", 5], ["created_at", "2018-09-11 15:37:23.619551"], ["updated_at", "2018-09-11 15:37:23.619551"]]
+   (41.4ms)  commit transaction
+=> #<Beer:0x00007f6da013d250
+ id: 11,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: 5,
+ created_at: Tue, 11 Sep 2018 15:37:23 UTC +00:00,
+ updated_at: Tue, 11 Sep 2018 15:37:23 UTC +00:00>
+[5] pry(main)> Beer.create(name: 'Nanny State', style: 'lowalcohol')
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+=> #<Beer:0x000055f4d835ef58
+ id: nil,
+ name: "Nanny State",
+ style: "lowalcohol",
+ brewery_id: nil,
+ created_at: nil,
+ updated_at: nil>
+[6] pry(main)> Beer.create(name: 'Nanny State', style: 'lowalcohol', brewery_id: BrewDog.id)
+   (0.1ms)  begin transaction
+  Brewery Load (0.2ms)  SELECT  "breweries".* FROM "breweries" WHERE "breweries"."id" = ? LIMIT ?  [["id", 5], ["LIMIT", 1]]
+  Beer Create (0.3ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Nanny State"], ["style", "lowalcohol"], ["brewery_id", 5], ["created_at", "2018-09-11 15:40:45.394814"], ["updated_at", "2018-09-11 15:40:45.394814"]]
+   (67.8ms)  commit transaction
+=> #<Beer:0x000055f4daa91a30
+ id: 12,
+ name: "Nanny State",
+ style: "lowalcohol",
+ brewery_id: 5,
+ created_at: Tue, 11 Sep 2018 15:40:45 UTC +00:00,
+ updated_at: Tue, 11 Sep 2018 15:40:45 UTC +00:00>
+[7] pry(main)> BrewDog.beers
+  Beer Load (0.3ms)  SELECT "beers".* FROM "beers" WHERE "beers"."brewery_id" = ?  [["brewery_id", 5]]
+=> [#<Beer:0x00007f6da013d250
+  id: 11,
+  name: "Punk IPA",
+  style: "IPA",
+  brewery_id: 5,
+  created_at: Tue, 11 Sep 2018 15:37:23 UTC +00:00,
+  updated_at: Tue, 11 Sep 2018 15:37:23 UTC +00:00>,
+ #<Beer:0x000055f4da9dcae0
+  id: 12,
+  name: "Nanny State",
+  style: "lowalcohol",
+  brewery_id: 5,
+  created_at: Tue, 11 Sep 2018 15:40:45 UTC +00:00,
+  updated_at: Tue, 11 Sep 2018 15:40:45 UTC +00:00>]
+[8] pry(main)> BrewDog.beers.first
+=> #<Beer:0x00007f6da013d250
+ id: 11,
+ name: "Punk IPA",
+ style: "IPA",
+ brewery_id: 5,
+ created_at: Tue, 11 Sep 2018 15:37:23 UTC +00:00,
+ updated_at: Tue, 11 Sep 2018 15:37:23 UTC +00:00>
+[9] pry(main)> BrewDog.beers.first.ratings
+  Rating Load (0.1ms)  SELECT "ratings".* FROM "ratings" WHERE "ratings"."beer_id" = ?  [["beer_id", 11]]
+=> []
+[10] pry(main)> BrewDog.beers.first.ratings.create(score: 50)
+   (0.1ms)  begin transaction
+  Rating Create (0.3ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 50], ["beer_id", 11], ["created_at", "2018-09-11 15:43:42.829895"], ["updated_at", "2018-09-11 15:43:42.829895"]]
+   (74.8ms)  commit transaction
+=> #<Rating:0x000055f4d8525e18
+ id: 1,
+ score: 50,
+ beer_id: 11,
+ created_at: Tue, 11 Sep 2018 15:43:42 UTC +00:00,
+ updated_at: Tue, 11 Sep 2018 15:43:42 UTC +00:00>
+[11] pry(main)> BrewDog.beers.first.ratings
+=> [#<Rating:0x000055f4d8525e18
+  id: 1,
+  score: 50,
+  beer_id: 11,
+  created_at: Tue, 11 Sep 2018 15:43:42 UTC +00:00,
+  updated_at: Tue, 11 Sep 2018 15:43:42 UTC +00:00>]
+[12] pry(main)> Rating.all
+  Rating Load (0.3ms)  SELECT "ratings".* FROM "ratings"
+=> [#<Rating:0x000055f4da88b3f8
+  id: 1,
+  score: 50,
+  beer_id: 11,
+  created_at: Tue, 11 Sep 2018 15:43:42 UTC +00:00,
+  updated_at: Tue, 11 Sep 2018 15:43:42 UTC +00:00>]
+[13] pry(main)> BrewDog.beers.first.ratings.create(score: 75)
+   (0.1ms)  begin transaction
+  Rating Create (0.4ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 75], ["beer_id", 11], ["created_at", "2018-09-11 15:45:01.008788"], ["updated_at", "2018-09-11 15:45:01.008788"]]
+   (68.7ms)  commit transaction
+=> #<Rating:0x000055f4daa00a58
+ id: 2,
+ score: 75,
+ beer_id: 11,
+ created_at: Tue, 11 Sep 2018 15:45:01 UTC +00:00,
+ updated_at: Tue, 11 Sep 2018 15:45:01 UTC +00:00>
+[14] pry(main)> BrewDog.beers.second
+=> #<Beer:0x000055f4da9dcae0 id: 12, name: "Nanny State", style: "lowalcohol", brewery_id: 5, created_at: Tue, 11 Sep 2018 15:40:45 UTC +00:00, updated_at: Tue, 11 Sep 2018 15:40:45 UTC +00:00>
+[15] pry(main)> BrewDog.beers.second.ratings
+  Rating Load (0.1ms)  SELECT "ratings".* FROM "ratings" WHERE "ratings"."beer_id" = ?  [["beer_id", 12]]
+=> []
+[16] pry(main)> BrewDog.beers.second.ratings.create(score: 100)
+   (0.1ms)  begin transaction
+  Rating Create (0.4ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 100], ["beer_id", 12], ["created_at", "2018-09-11 15:47:19.745967"], ["updated_at", "2018-09-11 15:47:19.745967"]]
+   (78.2ms)  commit transaction
+=> #<Rating:0x000055f4daae85d8 id: 3, score: 100, beer_id: 12, created_at: Tue, 11 Sep 2018 15:47:19 UTC +00:00, updated_at: Tue, 11 Sep 2018 15:47:19 UTC +00:00>
+[17] pry(main)> BrewDog.beers.second.ratings.create(score: 25)
+   (0.1ms)  begin transaction
+  Rating Create (0.4ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 25], ["beer_id", 12], ["created_at", "2018-09-11 15:47:26.217790"], ["updated_at", "2018-09-11 15:47:26.217790"]]
+   (58.4ms)  commit transaction
+=> #<Rating:0x000055f4daa8a438 id: 4, score: 25, beer_id: 12, created_at: Tue, 11 Sep 2018 15:47:26 UTC +00:00, updated_at: Tue, 11 Sep 2018 15:47:26 UTC +00:00>
+[18] pry(main)> 
+
+
