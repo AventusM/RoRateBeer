@@ -1,0 +1,10 @@
+
+
+<%= form_for(@rating) do |f| %>
+  <!-- <fieldset> THIS ACTUALLY WORKS
+    <legend>Create a new rating</legend> -->
+      beer id: <%= f.number_field :beer_id %>
+      score: <%= f.number_field :score %>
+    <%= f.submit %>
+  <!-- </fieldset> -->
+<% end %>

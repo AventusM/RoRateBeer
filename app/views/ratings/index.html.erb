@@ -1,5 +1,10 @@
+<h1>Ratings</h1>
+
 <ul>
   <% @ratings.each do |rating| %>
     <li><%= rating %></li>
   <% end %>
 </ul>
+
+<!-- huom - ei ole new_rating_path ym, miten se löytyy muista, asia korjataan materiaalin mukaan myöhemmin -->
+<%= link_to 'Create a new rating', ratings_new_path %> |
