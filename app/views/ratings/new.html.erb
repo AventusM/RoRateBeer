@@ -1,10 +1,6 @@
-
-
 <%= form_for(@rating) do |f| %>
-  <!-- <fieldset> THIS ACTUALLY WORKS
-    <legend>Create a new rating</legend> -->
-      beer id: <%= f.number_field :beer_id %>
-      score: <%= f.number_field :score %>
+    <!-- 1. select option, 2. params will be beer_id, options function from controller - 1. get all beers, 2. beer_id will be beer.id from option list, 3. user will see name instead of id to ease selection -->
+    <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s)%>
+    score: <%= f.number_field :score %>
     <%= f.submit %>
-  <!-- </fieldset> -->
 <% end %>

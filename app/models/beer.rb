@@ -18,6 +18,10 @@ class Beer < ApplicationRecord
     "Has #{ratings_amount} " + "rating".pluralize(ratings_amount) + " average #{average}" # Tehtävä 6
   end
 
+  def to_s
+    "#{self.name} by #{self.brewery.name}"
+  end
+
   def print_report
     #self = this
     puts "Beer name: #{self.name}"

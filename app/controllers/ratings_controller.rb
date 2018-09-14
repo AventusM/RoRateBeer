@@ -6,6 +6,8 @@ class RatingsController < ApplicationController
 
   def new
     @rating = Rating.new
+    # Jotta voidaan hyödyntää kaljojen id:t valikoissa, tarvitaan olemassaolevat kaljat
+    @beers = Beer.all
   end
 
   def create
