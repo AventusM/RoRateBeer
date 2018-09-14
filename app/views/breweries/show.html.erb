@@ -18,6 +18,14 @@
   <% end %>
 </p>
 
+<p>
+  <% if @brewery.ratings.empty? %>
+    Brewery does not have rated beers!
+  <% else %>
+    <%= @brewery.average_rating %>
+  <% end %>
+</p>
+
 <!-- Tuo esiin consolitulostuksen <%= @brewery.beers.to_a %> -->
 
 <!-- Seems like @brewery finds id implicitly -->
