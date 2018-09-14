@@ -23,4 +23,11 @@ class RatingsController < ApplicationController
    # redirect_to("http://www.cs.helsinki.fi") xd
   end
 
+  def destroy
+    # raise # params[:id] -> id ja poistettava rating saadaan hakemalla se erikseen
+    rating_to_delete = Rating.find(params[:id])
+    rating_to_delete.delete # Suoritetaan löydetyn ratingin poisto
+    redirect_to(ratings_path) # 'POST':in tapainen tilanne
+  end
+
 end

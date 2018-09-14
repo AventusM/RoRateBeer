@@ -2,9 +2,13 @@
 
 <ul>
   <% @ratings.each do |rating| %>
-    <li><%= rating %></li>
+    <li>
+      <%= rating %>
+      <%= link_to 'delete rating', rating_path(rating.id), method: :delete, data: { confirm: 'Are you sure?' } %> <!-- miksi method ei ole destroy? -->
+    </li>
   <% end %>
 </ul>
 
 <!-- huom - ei ole new_rating_path ym, miten se löytyy muista, asia korjataan materiaalin mukaan myöhemmin -->
-<%= link_to 'Create a new rating', ratings_new_path %> |
+<!-- resource only käyttöön (railsin oma REST API CRUD ->> reitin nimitys muuttuu 'oikeaan' muotoonsa) -->
+<%= link_to 'Create a new rating', new_rating_path %> |
