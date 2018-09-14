@@ -1,6 +1,6 @@
 class Beer < ApplicationRecord
   belongs_to :brewery
-  has_many :ratings
+  has_many :ratings, dependent: :destroy # Nyt, jos jokin olut poistetaan, niin siihen liittyvät ratingit poistetaan myös (ratingeilla belongs_to: beer)
 
   def average_rating
     # YHTEINEN
