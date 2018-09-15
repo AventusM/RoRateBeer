@@ -1,22 +1,8 @@
 class Beer < ApplicationRecord
+  include RatingAverage # DRY pois omaan moduuliinsa, metodi average_rating ei näköjään tarvitse parametrimuutoksia ym. vaan toimii ihan suoraan ??
+
   belongs_to :brewery
   has_many :ratings, dependent: :destroy # Nyt, jos jokin olut poistetaan, niin siihen liittyvät ratingit poistetaan myös (ratingeilla belongs_to: beer)
-
-  def average_rating
-    # YHTEINEN
-    ratings_amount = self.ratings.count
-
-    # TEHTÄVÄ 5
-    # sum = 0
-    # self.ratings.each{ |rating| sum+=rating.score } # Calculate sum
-    # average = sum / (ratings_amount * 1.0)
-    # "Has #{ratings_amount} ratings, average #{average}"
-
-    # TEHTÄVÄ 6
-    # No reduce for object straight up - have to use inject instead
-    average = self.ratings.inject(0.0){|sum,n| sum + n.score} / ratings_amount # use 0.0 as starter to have floats instead of multiplying by 1.0, sum is accumulator, n is a singular rating
-    "Has #{ratings_amount} " + "rating".pluralize(ratings_amount) + " average #{average}" # Tehtävä 6
-  end
 
   def to_s
     "#{self.name} by #{self.brewery.name}"
