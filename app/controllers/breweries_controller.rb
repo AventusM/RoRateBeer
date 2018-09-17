@@ -8,7 +8,7 @@ class BreweriesController < ApplicationController
     @breweries = Brewery.all
 
     # render :panimot -- renderöi tiedoston views/breweries/panimot.html.erb (jos sellainen siis olemassa)
-    render :index   # renderöi hakemistossa view/breweries olevan näkymätemplaten index.html.erb
+    render :index # renderöi hakemistossa view/breweries olevan näkymätemplaten index.html.erb
   end
 
   # GET /breweries/1
@@ -68,28 +68,23 @@ class BreweriesController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_brewery
-      @brewery = Brewery.find(params[:id])
-    end
+  private # rubocop herjaa jos ei riviä ylä- ja alapuolella
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def brewery_params
-      params.require(:brewery).permit(:name, :year)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_brewery
+    @brewery = Brewery.find(params[:id])
+  end
 
-    # Luodaan autentikointi
-    def authenticate
-      admin_accounts = { "anton" => "notna", "geir" => "rieg", "ravel" => "levar" }
-      authenticate_or_request_with_http_basic do |username, password| 
-        if admin_accounts[username] == password # https://www.railstutorial.org/book/rails_flavored_ruby#sec-hashes_and_symbols miksi username eikä :username
-          login_ok = true
-        else
-          login_ok = false
-        end
-        # byebug
-        login_ok  
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def brewery_params
+    params.require(:brewery).permit(:name, :year)
+  end
+
+  # Luodaan autentikointi
+  def authenticate
+    admin_accounts = { "anton" => "notna", "geir" => "rieg", "ravel" => "levar" }
+    authenticate_or_request_with_http_basic do |username, password|
+      # implicit return
+      admin_accounts[username] == password # https://www.railstutorial.org/book/rails_flavored_ruby#sec-hashes_and_symbols miksi username eikä :username
+  end
 end

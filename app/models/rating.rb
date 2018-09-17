@@ -6,9 +6,7 @@ class Rating < ApplicationRecord
     # beer_by_beer_id = Beer.find_by(id: self.beer_id)
 
     # Unohdin rails-taian ...
-    # Rating has one beer -> self.beer.param
-    "#{self.beer.name} #{self.score}"
+    # Rating has one beer -> self.beer.param (self redundant per rubocop)
+    "#{beer.name} #{score}"
   end
-
 end
-
