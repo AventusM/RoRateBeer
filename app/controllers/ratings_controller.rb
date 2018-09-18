@@ -16,16 +16,26 @@ class RatingsController < ApplicationController
     # binding.pry -- vaihtoehto byebugille
     # Rating.create(params[:rating]) -- ei kelpaa
     rating = Rating.create(params.require(:rating).permit(:beer_id, :score))
-    # Rails-magiaa taas -- :last_rating viimeisin luotu rating (ylläoleva)
-    session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
+    
+    # IMPORTANT
+    # IMPORTANT
+    # IMPORTANT
+    # IMPORTANT
+    rating.user = current_user # Jokaisella ratingilla on oltava sen lisääjä (has_many) => liitetään arvostelu käyttäjään tässä
+    rating.save # Tallennetaan explisiittisesti edellinen muutos
+    # IMPORTANT
+    # IMPORTANT
+    # IMPORTANT
+    # IMPORTANT
+
     # Redirect luonnin jälkeen
-    redirect_to(ratings_path)
+    redirect_to(user_path(current_user.id))
   end
 
   def destroy
     # raise # params[:id] -> id ja poistettava rating saadaan hakemalla se erikseen
     rating_to_delete = Rating.find(params[:id])
     rating_to_delete.delete # Suoritetaan löydetyn ratingin poisto
-    redirect_to(ratings_path) # 'POST':in tapainen tilanne
+    redirect_to(user_path(current_user.id)) # 'POST':in tapainen tilanne. Siirrytään takaisin kirjautuneen käyttäjän sivulle.
   end
 end
