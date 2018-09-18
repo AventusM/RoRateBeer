@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :beers
   resources :breweries
 
@@ -6,8 +7,15 @@ Rails.application.routes.draw do
   resources :ratings, only: [:index, :new, :create, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  # HUOM resource (ts. vain 1 sessio kerrallaan) -- uusi sessio --> sessioN/new
+  # CONTROLLER JA NÄKYMÄTIEDOSTOJEN NIMET SILTI SESSIONSSSSSSSSSS
+  resource :session, only: [:new, :create, :destroy]
+
   # ROOT
   get('/', to: 'breweries#index')
+
+  # SIGN UP
+  get('signup', to: 'users#new')
 
   # REST Rating
   # GET

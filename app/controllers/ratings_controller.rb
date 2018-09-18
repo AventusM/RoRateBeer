@@ -15,7 +15,9 @@ class RatingsController < ApplicationController
     # byebug # muuttuja rating = params[:rating] -> rating[:score] tai rating[:beer_id] -- vaihtoehtoisesti params[:rating][:score] ym.
     # binding.pry -- vaihtoehto byebugille
     # Rating.create(params[:rating]) -- ei kelpaa
-    Rating.create(params.require(:rating).permit(:beer_id, :score))
+    rating = Rating.create(params.require(:rating).permit(:beer_id, :score))
+    # Rails-magiaa taas -- :last_rating viimeisin luotu rating (ylläoleva)
+    session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
     # Redirect luonnin jälkeen
     redirect_to(ratings_path)
   end

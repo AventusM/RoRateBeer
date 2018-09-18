@@ -86,5 +86,6 @@ class BreweriesController < ApplicationController
     authenticate_or_request_with_http_basic do |username, password|
       # implicit return
       admin_accounts[username] == password # https://www.railstutorial.org/book/rails_flavored_ruby#sec-hashes_and_symbols miksi username eikä :username
+    end
   end
 end

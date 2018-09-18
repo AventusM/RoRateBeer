@@ -9,8 +9,8 @@ class Beer < ApplicationRecord
   end
 
   def ratings_sum
-    # ratings.map{ |rating| rating.score }.sum # rubocop ehdottaa korjaukseksi alempaa ratkaisua
-    ratings.map{&:score}.sum # rubocop herjaa tästä gtfo TargetRubyVersion ym.
+    ratings.map{ |rating| rating.score }.sum # rubocop ehdottaa korjaukseksi alempaa ratkaisua
+    # ratings.map{&:score}.sum # rubocop herjaa tästä gtfo TargetRubyVersion ym.
   end
 
   def ratings_avg

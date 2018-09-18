@@ -15,6 +15,12 @@
     <%= link_to 'breweries', breweries_path%>
     <%= link_to 'beers', beers_path%>
     <%= link_to 'ratings', ratings_path%>
+
+    <% if session[:user_nil].nil? %>
+      <span>Welcome back, <%= User.find_by(id: session[:user_id]).username %>!</span>
+    <% else %>
+      <span>Welcome, guest!</span>
+    <% end %>
     </div>
 
     <%= yield %>
