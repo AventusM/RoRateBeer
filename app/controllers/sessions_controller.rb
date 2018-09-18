@@ -17,6 +17,6 @@ class SessionsController < ApplicationController
   def destroy
     # logout / signout
     session[:user_id] = nil
-    redirect_to(root) # root olemassa? ei -> päivitä
+    redirect_to(breweries_path) # root olemassa? ei -> päivitä, breweries_path vissiin root?
   end
 end

@@ -14,8 +14,10 @@ Rails.application.routes.draw do
   # ROOT
   get('/', to: 'breweries#index')
 
-  # SIGN UP
+  # Sessionhallintaa
   get('signup', to: 'users#new')
+  get('signin', to: 'sessions#new')
+  delete('signout', to: 'sessions#destroy') # Parempi käytänne kuin GET tässä
 
   # REST Rating
   # GET

@@ -15,11 +15,16 @@
     <%= link_to 'breweries', breweries_path%>
     <%= link_to 'beers', beers_path%>
     <%= link_to 'ratings', ratings_path%>
+    <%= link_to 'users', users_path%> |
 
-    <% if session[:user_nil].nil? %>
-      <span>Welcome back, <%= User.find_by(id: session[:user_id]).username %>!</span>
+    <!-- paranneltu if-ehto tuplanegaation sijasta -->
+    <% if current_user %>
+      <%= link_to current_user.username, user_path(current_user.id) %>
+      <%= link_to 'rate a beer', new_rating_path %>
+      <%= link_to 'sign out', signout_path, method: :delete %>
     <% else %>
-      <span>Welcome, guest!</span>
+      <%= link_to 'sign in', signin_path %>
+      <%= link_to 'sign up', signup_path %>
     <% end %>
     </div>
 
