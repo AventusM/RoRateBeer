@@ -1,5 +1,6 @@
 class Rating < ApplicationRecord
   belongs_to :beer
+  belongs_to :user # Käyttäjä luo arvostelun
 
   # "puts" helvettii täältä nii alkaa näkyy jo jotain -.-
   def to_s
