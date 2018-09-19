@@ -1,6 +1,9 @@
 class Beer < ApplicationRecord
   include RatingAverage # DRY pois omaan moduuliinsa, metodi average_rating ei näköjään tarvitse parametrimuutoksia ym. vaan toimii ihan suoraan ??
 
+  # https://apidock.com/rails/v2.3.8/ActiveModel/Validations/ClassMethods/validates_presence_of
+  validates_presence_of :name
+
   belongs_to :brewery
   has_many :ratings, dependent: :destroy # Nyt, jos jokin olut poistetaan, niin siihen liittyvät ratingit poistetaan myös (ratingeilla belongs_to: beer)
 

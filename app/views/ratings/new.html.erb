@@ -1,4 +1,15 @@
 <%= form_for(@rating) do |f| %>
+  <% if @rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @rating.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
     <!-- 1. select option, 2. params will be beer_id, options function from controller - 1. get all beers, 2. beer_id will be beer.id from option list, 3. user will see name instead of id to ease selection -->
     <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s)%>
     score: <%= f.number_field :score %>

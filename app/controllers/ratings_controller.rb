@@ -15,21 +15,25 @@ class RatingsController < ApplicationController
     # byebug # muuttuja rating = params[:rating] -> rating[:score] tai rating[:beer_id] -- vaihtoehtoisesti params[:rating][:score] ym.
     # binding.pry -- vaihtoehto byebugille
     # Rating.create(params[:rating]) -- ei kelpaa
-    rating = Rating.create(params.require(:rating).permit(:beer_id, :score))
+    @rating = Rating.create(params.require(:rating).permit(:beer_id, :score))
     
     # IMPORTANT
     # IMPORTANT
     # IMPORTANT
     # IMPORTANT
-    rating.user = current_user # Jokaisella ratingilla on oltava sen lisääjä (has_many) => liitetään arvostelu käyttäjään tässä
-    rating.save # Tallennetaan explisiittisesti edellinen muutos
+    @rating.user = current_user # Jokaisella ratingilla on oltava sen lisääjä (has_many) => liitetään arvostelu käyttäjään tässä
     # IMPORTANT
     # IMPORTANT
     # IMPORTANT
     # IMPORTANT
 
     # Redirect luonnin jälkeen
-    redirect_to(user_path(current_user.id))
+    if(@rating.save) # @rating.save Tallennetaan explisiittisesti edellinen muutos
+      redirect_to(user_path(current_user.id))
+    else # Ei redirectausta (virheilmoitusten näyttämistä varten)
+      @beers = Beer.all
+      render :new
+    end
   end
 
   def destroy
