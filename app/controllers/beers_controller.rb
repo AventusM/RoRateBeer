@@ -36,6 +36,9 @@ class BeersController < ApplicationController
         format.html { redirect_to beers_path, notice: 'Beer was successfully created.' } # ei voi laittaa sulkeisiin ( ts. redirect_to(beers_path) ) --> johtunee format.html:n ominaisuuksista
         format.json { render :show, status: :created, location: @beer }
       else
+        # RELOAD Breweries and styles in case of error
+        @breweries = Brewery.all
+        @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
         format.html { render :new }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
       end
