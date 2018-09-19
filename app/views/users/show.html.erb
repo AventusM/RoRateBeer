@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <!-- add grid container div? -->
+
 <div class="userIntro">
   <h2>
     <%= @user.username %>
@@ -8,6 +9,16 @@
     <%= @user.average_rating %>
   </p>
 </div>
+
+<div class="memberships">
+  <p>member of</p>
+  <ul>
+    <% @user.beer_clubs.each do |club| %>
+      <li><%= link_to club.name, beer_club_path(club.id) %></li> <!-- HUOM CLUB - EI - CLUBS -->
+    <% end %>
+  </ul>
+</div>
+
 <div class="userRatings">
   <h3>
     ratings

@@ -6,6 +6,7 @@ class Beer < ApplicationRecord
 
   belongs_to :brewery
   has_many :ratings, dependent: :destroy # Nyt, jos jokin olut poistetaan, niin siihen liittyvät ratingit poistetaan myös (ratingeilla belongs_to: beer)
+  has_many :raters, through: :ratings, source: :user # Monesta-moneen-yhteys arvostelujen kautta käyttäjiin. Beer.users sijasta käytetään nimitystä Beer.raters, kun source: :user 
 
   def to_s
     "#{name} by #{brewery.name}" # self redundantteja
