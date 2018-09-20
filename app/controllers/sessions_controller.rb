@@ -4,18 +4,14 @@ class SessionsController < ApplicationController
 
   end
 
-  def create
-    # Kun sign-in/sign-up nappia painetaan
-    user = User.find_by(username: params[:username])
-    # Tarkistetaan, onko käyttäjää olemassa, jos ei niin redirect (saman sivun uudelleenlataus tässä tilanteessa)
-    if user.nil?
-      redirect_to(signin_path, notice: "User #{params[:username]} doesn't exist")
+  def create # Copypastetaan tämä muoto suoraan materiaalista selkeyden vuoksi
+    user = User.find_by username: params[:username]
+    # tarkastetaan että käyttäjä olemassa, ja että salasana on oikea
+    if (user && user.authenticate(params[:password]))
+      session[:user_id] = user.id
+      redirect_to(user_path(user.id), notice: "Welcome back!")
     else
-    # raise
-    # session saa user id:n löydetystä käyttäjästä
-    session[:user_id] = user.id if user # Rubymainen muoto, tämä on selkein esimerkki materiaalista löytyneistä kamoista (not user.nil? - sijasta turha negaatio)
-    # uudelleenohjaus omalle sivulle
-    redirect_to(user_path(user.id), notice: "Welcome back!") # user_path users_pathin sijasta, koska mennään tietylle pathille(?)
+      redirect_to(signin_path, notice: "Username and/or password mismatch") # Mahdollista saada error tms. toimimaan täältä?
     end
   end
 
