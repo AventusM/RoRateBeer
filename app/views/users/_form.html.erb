@@ -11,10 +11,13 @@
     </div>
   <% end %>
 
+<!-- Tämä näytetään vain, jos käyttäjää ei ole olemassa (ts. signup page) -->
+<% if @user.new_record? %>
   <div class="field">
     <%= form.label :username %>
     <%= form.text_field :username %>
   </div>
+<%end%>
 
   <div class="field">
     <%= form.label :password %>

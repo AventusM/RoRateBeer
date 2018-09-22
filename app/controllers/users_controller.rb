@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def update
     return redirect_to(users_url, notice: 'You have no permission to edit this user.') if not @user == current_user
     respond_to do |format|
-      if @user.update(user_params)
+      if user_params[:username].nil? and @user.update(user_params) # Ehto käyttäjätietojen muuttamiselle on se, että :username - field on null (eli tätä haaraa ei suoriteta, jos POST-pyynnön mukana on kyseiseen kenttään liitettyä dataa)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
