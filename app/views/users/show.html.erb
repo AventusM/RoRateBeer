@@ -27,11 +27,16 @@
   <% @user.ratings.each do |rating| %>
     <li>
       <%= rating %>
-      <%= link_to 'delete rating', rating_path(rating.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% if @user == current_user %> <!-- TÄMÄ EI RIITÄ YKSINÄÄN, laitettiin myös destroy-metodille samanlainen ehto, jos joku yrittää kiertää konsolimuutoksilla tämän -->
+        <%= link_to 'delete rating', rating_path(rating.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
     </li>
   <% end %>
 </ul>
 </div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if @user == current_user %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
 <%= link_to 'Back', users_path %>
