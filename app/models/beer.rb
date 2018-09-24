@@ -3,6 +3,7 @@ class Beer < ApplicationRecord
 
   # https://apidock.com/rails/v2.3.8/ActiveModel/Validations/ClassMethods/validates_presence_of
   validates_presence_of :name
+  validates_presence_of :style
 
   belongs_to :brewery
   has_many :ratings, dependent: :destroy # Nyt, jos jokin olut poistetaan, niin siihen liittyvät ratingit poistetaan myös (ratingeilla belongs_to: beer)
