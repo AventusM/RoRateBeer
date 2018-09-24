@@ -1,6 +1,9 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
 
+  # new, edit, create saavat alla olevan metodin sisällöt käyttöönsä näkymiin
+  before_action :set_breweries_and_styles, only: [:new, :edit, :create]
+
   # GET /beers
   # GET /beers.json
   def index
@@ -15,15 +18,15 @@ class BeersController < ApplicationController
   # GET /beers/new
   def new
     @beer = Beer.new
-    @breweries = Brewery.all
-    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
+    # @breweries = Brewery.all
+    # @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
   end
 
   # GET /beers/1/edit
   def edit
     # DRY rikottu - korjataan myöhemmin (jos jaksaa)
-    @breweries = Brewery.all
-    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
+    # @breweries = Brewery.all
+    # @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
   end
 
   # POST /beers
@@ -37,8 +40,8 @@ class BeersController < ApplicationController
         format.json { render :show, status: :created, location: @beer }
       else
         # RELOAD Breweries and styles in case of error
-        @breweries = Brewery.all
-        @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
+        # @breweries = Brewery.all
+        # @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
         format.html { render :new }
         format.json { render json: @beer.errors, status: :unprocessable_entity }
       end
@@ -80,4 +83,11 @@ class BeersController < ApplicationController
   def beer_params
     params.require(:beer).permit(:name, :style, :brewery_id)
   end
+
+  # Siirretään copypaste omaan metodiinsa - käyttö set_beerin tapaan - before_action + käyttö tietyille metodeille
+  def set_breweries_and_styles
+    @breweries = Brewery.all
+    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
+  end
+
 end
