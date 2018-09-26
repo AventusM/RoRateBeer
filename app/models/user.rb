@@ -16,4 +16,16 @@ class User < ApplicationRecord
   
   has_many :memberships, dependent: :destroy # Käyttäjä voi liittyä moneen klubiin
   has_many :beer_clubs, through: :memberships
+
+  def favorite_beer
+    return nil if ratings.empty?
+    user_ratings = ratings.sort_by{ |r| r.score }
+    favourite_rating = user_ratings.last
+    favourite_rating.beer # Implicit return
+    # ratings.order(score: :desc).limit(1).first.beer # optimoitu versio
+  end
+
+  def favorite_style
+    return nil if favorite_beer.nil?
+  end
 end
