@@ -53,4 +53,27 @@ describe "Rating" do
 
     expect(page).to(have_content("Overall #{ratings_count} ratings"))
   end
+
+  it("shows individual ratings only on individual user page") do
+    create_beers_with_many_ratings({user: test_user}, 10, 20, 30)
+    create_beers_with_many_ratings({user: test_user2}, 5, 15, 25)
+    visit(user_path(test_user.id))
+    # save_and_open_page
+
+    test_user_ratings = test_user.ratings
+    expect(page).to(have_content(test_user.username))
+    test_user_ratings.each do |test_user_rating|
+      expect(page).to(have_content(test_user_rating))
+    end
+
+    test_user2_ratings = test_user2.ratings
+    test_user2_ratings.each do |test_user2_rating|
+      expect(page).not_to(have_content(test_user2_rating))
+    end
+
+    expect(page).to(have_content("Has #{test_user_ratings.count} ratings"))
+
+    all_ratings_count = test_user_ratings.count + test_user2_ratings.count
+    expect(page).not_to(have_content("Has #{all_ratings_count} ratings"))
+  end
 end
