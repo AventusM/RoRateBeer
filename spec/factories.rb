@@ -6,12 +6,12 @@ FactoryBot.define do
   end
 
   factory :brewery do
-    name { "Coors brewing company" }
+    name { "Coors Brewing Company" }
     year { 1873 }
   end
 
   factory :beer do
-    name { "Coors light" }
+    name { "Coors Light" }
     style { "crap"}
     brewery # beer.brewery (factory)
   end

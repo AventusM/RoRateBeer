@@ -9,6 +9,8 @@
   <% end %>
 </ul>
 
+<p>Overall <b><%= @ratings.count %></b> ratings</p>
+
 <!-- huom - ei ole new_rating_path ym, miten se löytyy muista, asia korjataan materiaalin mukaan myöhemmin -->
 <!-- resource only käyttöön (railsin oma REST API CRUD ->> reitin nimitys muuttuu 'oikeaan' muotoonsa) -->
 <%= link_to 'Create a new rating', new_rating_path %> |
