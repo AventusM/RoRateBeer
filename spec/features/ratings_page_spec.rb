@@ -76,4 +76,30 @@ describe "Rating" do
     all_ratings_count = test_user_ratings.count + test_user2_ratings.count
     expect(page).not_to(have_content("Has #{all_ratings_count} ratings"))
   end
+
+  # Vain 1 arvostelu
+  it("shows no ratings when the only existing one has been removed") do
+    create_beers_with_many_ratings({user: test_user}, 10)
+    expect(Rating.count).to(eq(1))
+    visit(user_path(test_user.id))
+    
+    # save_and_open_page
+    expect{
+      click_link("delete rating")
+    }.to change{Rating.count}.from(1).to(0)
+    # save_and_open_page
+  end
+
+  # Enemmän kuin 1 arvostelu
+  it("shows remaining ratings after one from many has been removed") do
+    create_beers_with_many_ratings({user: test_user}, 10, 20)
+    expect(Rating.count).to(eq(2))
+    visit(user_path(test_user.id))
+
+    # save_and_open_page
+    expect{
+      page.first(:link, "delete rating").click
+    }.to change{Rating.count}.from(2).to(1)
+    # save_and_open_page
+  end
 end

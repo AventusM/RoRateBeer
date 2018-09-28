@@ -40,7 +40,7 @@ class RatingsController < ApplicationController
     # raise # params[:id] -> id ja poistettava rating saadaan hakemalla se erikseen
     rating_to_delete = Rating.find(params[:id])
     # puts rating_to_delete.user.username
-    rating_to_delete.delete if current_user = rating.user # Suoritetaan löydetyn ratingin poisto (NYT VAIN OMAT, ohjelma kaatuu, jos yritetään muuten)
+    rating_to_delete.delete if current_user = rating_to_delete.user # Suoritetaan löydetyn ratingin poisto (NYT VAIN OMAT, ohjelma kaatuu, jos yritetään muuten)
     redirect_to(user_path(current_user.id)) # 'POST':in tapainen tilanne. Siirrytään takaisin kirjautuneen käyttäjän sivulle.
   end
 end
