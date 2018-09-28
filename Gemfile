@@ -73,6 +73,8 @@ group :test do
   gem 'factory_bot_rails'
   # Apukirjasto capybaralle(?)
   gem 'launchy'
+  # Paikallinen (?) testikattavuus
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
