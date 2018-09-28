@@ -1,4 +1,7 @@
 # RoRateBeer
+<hr>
+[![Build Status](https://travis-ci.org/AventusM/RoRateBeer.svg?branch=master)](https://travis-ci.org/AventusM/RoRateBeer)
+<hr>
 <dl>
   <dt>Yhdestä-moneen - yhteys (määritellään Modeleissa)</dt>
   <dd>Brewery has many Beers - Brewery.beers.param (id /style) viewseissä</dd>
