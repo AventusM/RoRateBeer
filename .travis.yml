@@ -1,8 +1,13 @@
 language: ruby
-
 rvm:
 - 2.5.1
-
 script:
-- bundle exec rails db:migrate 
+- bundle exec rails db:migrate
 - bundle exec rspec -fd spec
+deploy:
+  provider: heroku
+  api_key:
+    secure: nv43P+iyGCTSdsSZxRrPGOCjPfXsrQpdR326YOtSMM/FNdj6ncDPz29wuX4+XRhQLcAMFD9S8rVFL2Avwp2URipHkDfgdxxJt3ETVltVS3IEP8TtvYk+D7oNhu8JXDAu2RW1/lGRgRdi1/sR1bCOSus3zIW0VFgU0N2xhO0QEgPMUh/Ytt/+Qz2xzheLDhc0uGpTTTdHGpq8uN0hqQpQftqOehKiHh3mA7sfkRCI/uYBuxgZ+MAQfm6hlZytaGCvDvyYAuNCWLGqGDqdNHFTrsl2AP/v8SLY/Vkn2y4paaO1cfQDYSbCrZEqzKcTFZcQn/1f/hx0FkUMJzL5G3zqK1NTNtfD/0stpD9aQjwWR4bWZv7nzmRwaKK9qiRKWDUkY7vpJjl5Xb8QwJkVu8HPyoPtvAtTF2Px5LVszqwGvvfSu0uwtSjhLkAuv4ieBK9zaLYM75HlHJOyeuGxrGxwNGiR+dxFJwCZXH2z5iuI8rfEejfyFNvl0chDm0Uotxgp95J1Jls8KOOw5ex66yWx4fuKAD70WDKmVdp3SMTP3ZIPOhuIQuKQNYDz97vmlEh3orXp5wHojbJVLJgPZQwy5baljXDgKmZIfLIOLXYAgOMojK6B7rtGyykjp8a9u1Ukt3KS4JDoqVBTSTuh9Wk0CuEGCnl76Uoa0VnXZI06tWc=
+  app: RoRateBeer
+  on:
+    repo: AventusM/RoRateBeer
