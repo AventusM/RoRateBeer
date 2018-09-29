@@ -8,3 +8,5 @@
   <dt>Linkki herokuun (root -> /breweries)</dt>
   <dd>https://calm-escarpment-99805.herokuapp.com</dd>
 </dl>
+
+<hr>
