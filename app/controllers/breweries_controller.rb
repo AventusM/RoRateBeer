@@ -1,6 +1,7 @@
 class BreweriesController < ApplicationController
+  before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, only: [:destroy] # SAMA KUIN before_filter, autentikointi suoritetaan VAIN silloin, kun kutsutaan destroy-metodia
+  # before_action :authenticate, only: [:destroy] # SAMA KUIN before_filter, autentikointi suoritetaan VAIN silloin, kun kutsutaan destroy-metodia
 
   # GET /breweries
   # GET /breweries.json
@@ -81,11 +82,11 @@ class BreweriesController < ApplicationController
   end
 
   # Luodaan autentikointi
-  def authenticate
-    admin_accounts = { "anton" => "notna", "geir" => "rieg", "ravel" => "levar" }
-    authenticate_or_request_with_http_basic do |username, password|
-      # implicit return
-      admin_accounts[username] == password # https://www.railstutorial.org/book/rails_flavored_ruby#sec-hashes_and_symbols miksi username eikä :username
-    end
-  end
+  # def authenticate
+  #   admin_accounts = { "anton" => "notna", "geir" => "rieg", "ravel" => "levar" }
+  #   authenticate_or_request_with_http_basic do |username, password|
+  #     # implicit return
+  #     admin_accounts[username] == password # https://www.railstutorial.org/book/rails_flavored_ruby#sec-hashes_and_symbols miksi username eikä :username
+  #   end
+  # end
 end

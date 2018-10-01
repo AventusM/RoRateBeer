@@ -1,8 +1,13 @@
 language: ruby
-
 rvm:
 - 2.5.1
-
 script:
-- bundle exec rails db:migrate 
+- bundle exec rails db:migrate
 - bundle exec rspec -fd spec
+deploy:
+  provider: heroku
+  api_key:
+    secure: gjbv99hWHv3TJE4EUGPFOttt9oeiGIgihG0auPmPemyMXTWlvXQtrX0z6LMvSBNAxxhpe5sDU7Ldvl0akM04ZIP38IOiislYpDbHUsAIlJ3TDdGMEnUemXlpYSmyKnoKPc3eTe3rDp9M2exTHJalLvBZhwoBq3znewhHP5nphbh8iZ8jkBS6M+hpiggexTrcxCqQz7FkVTLZ8k8ligwCH9ejem4xmhuqaZQmHqP6Pk3+8kID0mV4FRA1S/HqdoupsiV5rcfw1NGWMDO2SARhSVXEB5zT9PHW/DKpHOjcSr1oVT1td9sndEkM+EHtPzS4CjGQbO+p5iOUZhqjDq4b7VZSRReS+FAcfYfIqgp9RIABBUo1iW2WBE0Ro8MlWiRkaUgrfI+kH4NYQzTYRnUiuOnL9RDIwpsE5PWXLY8bgK6fPZyK5upvMyaL8aqyapbZMK8IIuhjNjfLCGQ5lFV8yTxPTnuPwUyeirS8UgDGOeiMFSnkIUT0QGDDLH9iAOyeUQm+5GO/rdVt0zeYgk66tvmw/SG4bjA6VJn06ei+W24uCPLdirV8UoXKSFmySueShysuvHmMeXT5L7ihhY50E9DtfaucVB3uaqnV3uzJptUg8skFkuVL27lfSMsIseHGtDlIfHIMTB2GTv+ZDCfhCuAXXT4OwQUENPcIhmsJIdk=
+  app: calm-escarpment-99805
+  on:
+    repo: AventusM/RoRateBeer

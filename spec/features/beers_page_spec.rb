@@ -7,8 +7,10 @@ include Helpers # MYÖS MODUULI ITSE
 
 describe "Beer" do
   let!(:test_brewery){FactoryBot.create(:brewery, name: "Test Brewery")}
+  let!(:test_user){FactoryBot.create :user}
 
   before :each do
+    sign_in(username: "Anton", password: "Test123") # Moduulissa helpers
     visit(new_beer_path)
     # save_and_open_page
   end
