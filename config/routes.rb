@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   get('signin', to: 'sessions#new')
   delete('signout', to: 'sessions#destroy') # Parempi käytänne kuin GET tässä
 
+  # 3rd party API (Beermapping)
+  get('places', to: 'places#index')
+  post('places', to: 'places#search')
+
   # REST Rating
   # GET
   # get('ratings', to: 'ratings#index')
