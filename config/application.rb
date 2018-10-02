@@ -15,5 +15,9 @@ module RateBeer
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    
+    # hakemiston /lib mahdolliset luokat (kuten 3rd party apit) luodaan täällä
+    config.autoload_paths << Rails.root.join("lib")
+    config.eager_load_paths << Rails.root.join("lib")
   end
 end
