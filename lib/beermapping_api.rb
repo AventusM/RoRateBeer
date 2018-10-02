@@ -1,5 +1,20 @@
 class BeermappingApi
+
   def self.places_in(city)
+    city = city.downcase # Parametri lowercaseen
+    places = Rails.cache.read(city) # Luetaan keksit, löytyisikö olemassaolevaa tietoa
+    return places if places # Muuttumaton viime kertaan JA TRUE? Palautetaan olemassaolevat tiedot
+    
+    # Muuten haetaan varsinaisesta metodista uusi data
+    places = get_places_in(city)
+    # Laitetaan haettu data välimuistiin
+    # expires_in täältä https://api.rubyonrails.org/classes/ActiveSupport/Cache/Store.html#method-i-fetch
+    Rails.cache.write(city, places, expires_in: 1.week)
+    # palautetaan varsinaiset paikkatiedot (implicit return)
+    places 
+  end
+
+  def self.get_places_in(city)
     url = "http://beermapping.com/webservice/loccity/#{key}/"
 
     response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
