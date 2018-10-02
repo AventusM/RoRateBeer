@@ -75,6 +75,8 @@ group :test do
   gem 'launchy'
   # Paikallinen (?) testikattavuus
   gem 'simplecov', require: false
+  # Mahdollistaa HTTPartyn stubauksen -- VAIN TEST SCOPEEN
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
