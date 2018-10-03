@@ -13,6 +13,7 @@ class BeerClubsController < ApplicationController
   def show
     @membership = Membership.new
     @membership.beer_club = @beer_club
+    # raise
 
     # Nimitys user tulee membership - modelista
     # TURHA - create - metodi liittää käyttäjän jäsenyyteen myöhemmin

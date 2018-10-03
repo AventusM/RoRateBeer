@@ -21,7 +21,8 @@ class MembershipsController < ApplicationController
       @membership = Membership.create(params.require(:membership).permit(:beer_club_id)) # fieldin id:n tulee olla beer_club_id
       @membership.user_id = current_user.id
       @membership.save
-      redirect_to(user_path(current_user.id))
+      redirect_to(beer_club_path(@membership.beer_club_id), notice: 'Welcome to the club, ' + current_user.username + '!')
+      # redirect_to(user_path(current_user.id))
     end
     # Redirect luonnin jälkeen noticen kanssa?
   end

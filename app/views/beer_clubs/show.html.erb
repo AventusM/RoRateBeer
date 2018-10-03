@@ -19,7 +19,7 @@
   </ul>
 </div>
 
-<% if current_user %>
+<% if current_user and not blocked_to_join_club %>
   <%= form_for(@membership) do |f| %> <!-- submittaamalla formin suoritetaan membership controllerin create - metodi -->
     <%= f.hidden_field :beer_club_id %> 
     <%= f.submit value:"join the club" %>
