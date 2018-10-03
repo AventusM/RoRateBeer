@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # CONTROLLER JA NÄKYMÄTIEDOSTOJEN NIMET SILTI SESSIONSSSSSSSSSS
   resource :session, only: [:new, :create, :destroy]
 
+
   # ROOT
   get('/', to: 'breweries#index')
 
@@ -22,7 +23,11 @@ Rails.application.routes.draw do
   delete('signout', to: 'sessions#destroy') # Parempi käytänne kuin GET tässä
 
   # 3rd party API (Beermapping)
-  get('places', to: 'places#index')
+  # Paikkaa 2 alempaa GETiä - nyt reititys onnistuu muodossa place_path(place.id) ym id.
+  resources :places, only: [:index, :show]
+
+  # get('places', to: 'places#index')
+  # get('places/:id', to: 'places#show')
   post('places', to: 'places#search')
 
   # REST Rating

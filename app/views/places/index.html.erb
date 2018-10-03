@@ -16,9 +16,18 @@
     </thead>
     <% @places.each do |place| %> <!-- Loopataan jokainen @place controllerista -->
       <tr>
-        <% Place.rendered_fields.each do |field| %>
+        <td><%= link_to place.id, place_path(place.id) %></td>
+        <!-- <td><%= place.id %></td> -->
+        <td><%= place.name %></td>
+        <td><%= place.status %></td>
+        <td><%= place.street %></td>
+        <td><%= place.city %></td>
+        <td><%= place.zip %></td>
+        <td><%= place.country %></td>
+        <td><%= place.overall %></td>
+       <!-- <% Place.rendered_fields.each do |field| %>
           <td><%= place.send(field) %></td>
-        <% end %>
+        <% end %> -->
       </tr>
     <% end %>
   </table>

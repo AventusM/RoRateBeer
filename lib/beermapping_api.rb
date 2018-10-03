@@ -28,6 +28,17 @@ class BeermappingApi
     end
   end
 
+  # TODO - VÄLIMUISTISUORITUS EHKÄ?
+  def self.get_place_info_by_id(id)
+    url = "http://beermapping.com/webservice/locquery/#{key}"
+    response = HTTParty.get("#{url}/#{id}")
+    parsed_response = response.parsed_response["bmp_locations"]["location"]
+    
+    # Basic error handling? -- id is a number tms...
+    return nil if parsed_response['id'] == '0' or parsed_response['name'] == 'No locations Found'
+    place = Place.new(parsed_response)
+  end
+
   def self.key
     api_key = "889f6d94eb4f0afa0c0c8f968e62a2b9"
     api_key # Implicit return

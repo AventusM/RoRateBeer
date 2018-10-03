@@ -1,6 +1,11 @@
 class PlacesController < ApplicationController
+  before_action :find_place, only: [:show]
+
   def index
     # raise
+  end
+
+  def show
   end
 
   def search
@@ -10,6 +15,16 @@ class PlacesController < ApplicationController
       redirect_to(places_path, notice: "No locations in #{params[:city]}")
     else
       render :index
+    end
+  end
+
+  def find_place
+    @place = BeermappingApi.get_place_info_by_id(params[:id])
+    # raise
+    if @place.nil?
+      redirect_to(places_path, notice: "No place found with given id")
+    else
+      render :show
     end
   end
 
