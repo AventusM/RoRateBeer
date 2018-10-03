@@ -24,5 +24,14 @@
   <% end %>
 </p>
 
+<% if current_user %>
+  <h5>give a rating:</h5>
+  <%= form_for(@rating) do |field| %>
+    <%= field.hidden_field :beer_id %> <!-- id on beer_id, tarkemmin rating_beer_id (@rating ylemmällä rivillä) -->
+    score: <%= field.number_field :score %> <!-- score on id -> rating_score tarkemmin -->
+    <%= field.submit %>
+  <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_beer_path(@beer) %> |
 <%= link_to 'Back', beers_path %>

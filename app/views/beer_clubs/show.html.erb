@@ -19,5 +19,12 @@
   </ul>
 </div>
 
+<% if current_user %>
+  <%= form_for(@membership) do |f| %> <!-- submittaamalla formin suoritetaan membership controllerin create - metodi -->
+    <%= f.hidden_field :beer_club_id %> 
+    <%= f.submit value:"join the club" %>
+  <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_beer_club_path(@beer_club) if current_user %> |
 <%= link_to 'Back', beer_clubs_path %>

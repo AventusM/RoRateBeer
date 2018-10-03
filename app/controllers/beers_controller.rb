@@ -13,7 +13,13 @@ class BeersController < ApplicationController
 
   # GET /beers/1
   # GET /beers/1.json
+
+  # Sivulla mahdollisuus luoda uusi arvostelu
   def show
+    @rating = Rating.new
+
+    # @beer saadaan set_beeristä (before action sisältää shown)
+    @rating.beer = @beer
   end
 
   # GET /beers/new

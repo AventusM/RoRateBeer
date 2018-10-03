@@ -11,7 +11,8 @@
     </div>
   <% end %>
     <!-- 1. select option, 2. params will be beer_id, options function from controller - 1. get all beers, 2. beer_id will be beer.id from option list, 3. user will see name instead of id to ease selection -->
-    <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s)%>
+    <!-- 4. option keeps the beer that was supposed to be rated selected in case of unsuccesful rating selection by user -->
+    <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id) %>
     score: <%= f.number_field :score %>
     <%= f.submit %>
 <% end %>

@@ -11,6 +11,12 @@ class BeerClubsController < ApplicationController
   # GET /beer_clubs/1
   # GET /beer_clubs/1.json
   def show
+    @membership = Membership.new
+    @membership.beer_club = @beer_club
+
+    # Nimitys user tulee membership - modelista
+    # TURHA - create - metodi liittää käyttäjän jäsenyyteen myöhemmin
+    # @membership.user = current_user
     # raise
   end
 
