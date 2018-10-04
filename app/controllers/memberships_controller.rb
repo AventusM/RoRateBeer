@@ -26,4 +26,9 @@ class MembershipsController < ApplicationController
     end
     # Redirect luonnin jälkeen noticen kanssa?
   end
+
+  def destroy
+    # @membership = current_user.id
+    raise
+  end
 end

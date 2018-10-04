@@ -16,7 +16,8 @@
     <% @beers.each do |beer| %>
       <tr>
         <td><%= link_to beer.name, beer_path(beer.id) %></td>
-        <td><%= beer.style %></td>
+        <!-- Näköjään ei täydykään laittaa beer['style'] - muotoa käyttöön... -->
+        <td><%= beer.style.beer_style %></td>
         <td><%= link_to beer.brewery.name, brewery_path(beer.brewery.id) %></td>
         <!--<td><%= link_to 'Show', beer %></td>-->
         <td><%= link_to 'Edit', edit_beer_path(beer) %></td>

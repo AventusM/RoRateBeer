@@ -58,6 +58,7 @@ class BeersController < ApplicationController
   # PATCH/PUT /beers/1
   # PATCH/PUT /beers/1.json
   def update
+    # raise
     respond_to do |format|
       if @beer.update(beer_params)
         format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
@@ -88,13 +89,14 @@ class BeersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def beer_params
-    params.require(:beer).permit(:name, :style, :brewery_id)
+    params.require(:beer).permit(:name, :style_id, :brewery_id)
   end
 
   # Siirretään copypaste omaan metodiinsa - käyttö set_beerin tapaan - before_action + käyttö tietyille metodeille
   def set_breweries_and_styles
     @breweries = Brewery.all
-    @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
+    @styles = Style.all
+    # @styles = ["Weizen", "Lager", "Pale ale", "IPA", "Porter", "Cider", "Vodka"]
   end
 
 end
