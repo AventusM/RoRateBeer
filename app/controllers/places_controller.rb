@@ -11,6 +11,8 @@ class PlacesController < ApplicationController
   def search
     # Refaktoroitu hakuversio - sovelluslogiikka pois kontrollerista /lib - hakemistoon
     @places = BeermappingApi.places_in(params[:city])
+    @weather = WeathermappingApi.get_weather_info_in(params[:city])
+    # raise
     if @places.empty?
       redirect_to(places_path, notice: "No locations in #{params[:city]}")
     else

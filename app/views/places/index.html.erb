@@ -7,6 +7,17 @@
   <%= submit_tag "Search" %>
 <% end %>
 
+<!-- HUOM VÄLILYÖNTI BR -->
+<br/>
+<!-- HUOM VÄLILYÖNTI BR -->
+
+
+<% if @weather %>
+  <b>The current beer weather in <%= @weather[:location]["name"] %></b>
+  <p><%= @weather[:current]["temp_c"] %> &deg;C, feels like <%= @weather[:current]["feelslike_c"] %> &deg;C</p>
+  <%= image_tag(@weather[:current]["condition"]["icon"])%>
+<% end %>
+
 <% if @places %>
   <table>
     <thead>
