@@ -50,7 +50,8 @@
               <%= link_to 'join a club ', new_membership_path, { class: "nav-link" } %>
             </li> 
             <li class="nav-item">
-              <%= link_to 'signout', signout_path, { class: "nav-link" } %>
+            <!-- Ilman method: :delete - muutosta bootcrap / jquery tulkitsee näitä linkkejä GET - muotoon? -->
+              <%= link_to 'signout', signout_path, method: :delete, class: "nav-link" %>
             </li>                    
           <% else %>
             <li class="nav-item">

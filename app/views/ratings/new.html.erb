@@ -14,5 +14,5 @@
     <!-- 4. option keeps the beer that was supposed to be rated selected in case of unsuccesful rating selection by user -->
     <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id) %>
     score: <%= f.number_field :score %>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-primary" %>
 <% end %>
