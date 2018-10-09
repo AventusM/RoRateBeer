@@ -40,7 +40,19 @@
             <%= link_to 'places', places_path, { class: "nav-link" } %>
           </li> 
           <% if current_user %>
-            <li class="nav-item">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.username %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to 'my page', current_user, { class: "dropdown-item" } %>
+                <%= link_to 'rate a beer ', new_rating_path, { class: "dropdown-item" } %>
+                <%= link_to 'join a club ', new_membership_path, { class: "dropdown-item" } %>
+                <div class="dropdown-divider"></div>
+                <%= link_to 'signout', signout_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </li>
+           <!--<li class="nav-item">
               <%= link_to current_user.username, current_user, { class: "nav-link" } %>
             </li> 
             <li class="nav-item">
@@ -50,9 +62,9 @@
               <%= link_to 'join a club ', new_membership_path, { class: "nav-link" } %>
             </li> 
             <li class="nav-item">
-            <!-- Ilman method: :delete - muutosta bootcrap / jquery tulkitsee näitä linkkejä GET - muotoon? -->
+             Ilman method: :delete - muutosta bootcrap / jquery tulkitsee näitä linkkejä GET - muotoon?
               <%= link_to 'signout', signout_path, method: :delete, class: "nav-link" %>
-            </li>                    
+            </li> -->                   
           <% else %>
             <li class="nav-item">
               <%= link_to 'signin', signin_path, { class: "nav-link" } %>
