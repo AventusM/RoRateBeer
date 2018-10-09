@@ -27,7 +27,7 @@ a {
   }
 
   &:hover {
-    color: #fff;
+    color: rgb(100, 156, 158);
     // background-color: #000;
   }
 }
@@ -75,7 +75,7 @@ div {
 
   ul li {
     font-size: 12px;
-    list-style: square;
+    list-style-type: none;
   }
 }
 

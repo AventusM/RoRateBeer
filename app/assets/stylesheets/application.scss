@@ -24,4 +24,11 @@
   margin-left: auto;
 }
 
+.form-border{
+  border: 2px solid rgb(41, 93, 95);
+  border-radius: 30px;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
 @import "bootstrap";
