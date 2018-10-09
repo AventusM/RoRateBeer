@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="form-border">
+  <div class="form-group">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
   <!-- OLETUSVALINTA ON AINA LAGER (ENSIMMÄINEN VALINTA) VAIKKA OLISI EDIT ERI TYYPPI - QoL fix tulevaisuudessa mahdollinen??? -->
   <!-- OLETUSVALINTA ON AINA LAGER (ENSIMMÄINEN VALINTA) VAIKKA OLISI EDIT ERI TYYPPI - QoL fix tulevaisuudessa mahdollinen??? -->
   <!-- OLETUSVALINTA ON AINA LAGER (ENSIMMÄINEN VALINTA) VAIKKA OLISI EDIT ERI TYYPPI - QoL fix tulevaisuudessa mahdollinen??? -->
@@ -25,13 +26,11 @@
     <!-- <%= form.text_field :style %> -->
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :brewery_id %>
     <%= form.select :brewery_id, options_from_collection_for_select(@breweries, :id, :name)%>
     <!-- <%= form.number_field :brewery_id %> -->
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <%= form.submit class: "btn btn-primary"%>
   </div>
 <% end %>

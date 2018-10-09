@@ -11,12 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="form-border">
+  <div class="form-group">
     <%= form.label :beer_style %>
-    <%= form.text_area :beer_style %>
+    <%= form.text_field :beer_style, class: "form-control" %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit class: "btn btn-primary" %>
+</div>
 <% end %>

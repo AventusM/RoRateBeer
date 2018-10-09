@@ -14,8 +14,8 @@
     <% @styles.each do |style| %>
       <tr>
         <td><%= style.beer_style %></td>
-        <td><%= link_to 'Show', style %></td>
-        <td><%= link_to 'Edit', edit_style_path(style) %></td>
+        <td><%= link_to 'Show', style, class: "btn btn-link btn-sm" %></td>
+        <td><%= link_to 'Edit', edit_style_path(style), class: "btn btn-link btn-sm" %></td>
         <td><%= link_to 'Destroy', style, class: 'btn btn-danger btn-link btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

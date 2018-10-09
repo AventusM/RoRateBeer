@@ -15,10 +15,10 @@
     <% @breweries.each do |brewery| %>
       <tr>
         <!-- Changing default 'Show' to what it is to make comprehension easier -->
-        <td><%= link_to brewery.name, brewery_path(brewery.id) %></td>
+        <td><%= link_to brewery.name, brewery_path(brewery.id), class: "btn btn-link btn-sm" %></td>
         <td><%= brewery.year %></td>
         <!-- <td><%= link_to 'Show', brewery_path(brewery.id) %></td> -->
-        <td><%= link_to 'Edit', edit_brewery_path(brewery) if current_user %></td>
+        <td><%= link_to 'Edit', edit_brewery_path(brewery), class: 'btn btn-link btn-sm' if current_user %></td>
         <td><%= link_to 'Destroy', brewery, class: 'btn btn-danger btn-link btn-sm', method: :delete, data: { confirm: 'Are you sure?' } if current_user%></td>
       </tr>
     <% end %>
