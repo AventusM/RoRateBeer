@@ -2,7 +2,11 @@
   <thead>
   <tr>
     <th></th>
-    <th>Average</th>
+    <% if local_assigns[:users]%>
+      <th>ratings</th>
+    <% else %>
+      <th>Average</th>
+    <% end %>
   </tr>
   </thead>
 
@@ -14,7 +18,7 @@
         <td><%= element.rating_avg %></td>
       <% elsif local_assigns[:users] %>
         <td><%= link_to element.username, element, class: "btn btn-link btn-sm" %></td>
-        <td><%= element.average_rating %></td>
+        <td><%= element.ratings.count %></td>
       <% else %>
         <td><%= link_to element.name, element, class: "btn btn-link btn-sm" %></td>
         <td><%= element.average_rating %></td>
