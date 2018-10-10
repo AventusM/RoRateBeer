@@ -6,8 +6,11 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
-    @breweries = Brewery.all
-
+    # @breweries = Brewery.all
+    # @active_breweries = Brewery.where(active: true)
+    # @retired_breweries = Brewery.where(active: [nil, false])
+    @active_breweries = Brewery.active
+    @retired_breweries = Brewery.retired
     # render :panimot -- renderöi tiedoston views/breweries/panimot.html.erb (jos sellainen siis olemassa)
     render :index # renderöi hakemistossa view/breweries olevan näkymätemplaten index.html.erb
   end
@@ -78,7 +81,7 @@ class BreweriesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def brewery_params
-    params.require(:brewery).permit(:name, :year)
+    params.require(:brewery).permit(:name, :year, :active)
   end
 
   # Luodaan autentikointi

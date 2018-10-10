@@ -28,6 +28,13 @@ class Beer < ApplicationRecord
     ratings_sum / ratings.count.to_f
   end
 
+  def self.top(n)
+    sorted_by_rating_in_desc_order = Beer.all.sort_by{ |b| -(b.average_rating || 0) }
+    # palauta listalta parhaat n kappaletta
+    # miten? ks. http://www.ruby-doc.org/core-2.5.1/Array.html
+    sorted_by_rating_in_desc_order.take(n)
+  end
+
   def print_report
     #self = this
     puts "Beer name: #{name}"

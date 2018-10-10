@@ -1,16 +1,22 @@
 <h1>Ratings</h1>
 
-<ul>
-  <% @ratings.each do |rating| %>
-    <li>
-      <%= rating %>
-      <%= link_to rating.user.username, user_path(rating.user.id) %>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="col">
+    <h3>Top 3 breweries</h3>
+    <%= render 'list', array: @top_breweries %>
+  </div>
+  <div class="col">
+    <h3>Top 3 beers</h3>
+    <%= render 'list', array: @top_beers %>
+  </div>
+</div>
 
-<p>Overall <b><%= @ratings.count %></b> ratings</p>
-
+<div class="row">
+  <div class="col">
+    <h3>Most recent ratings</h3>
+    <%= render 'ratingslist', ratings: @most_recent_ratings %>
+  </div>
+</div>
 <!-- huom - ei ole new_rating_path ym, miten se löytyy muista, asia korjataan materiaalin mukaan myöhemmin -->
 <!-- resource only käyttöön (railsin oma REST API CRUD ->> reitin nimitys muuttuu 'oikeaan' muotoonsa) -->
 <%= link_to 'Create a new rating', new_rating_path %> |

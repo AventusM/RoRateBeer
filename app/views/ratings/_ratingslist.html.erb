@@ -1,0 +1,16 @@
+<ul>
+ <!--  oli aluksi < % = ratings.eachin alussa, printtasi itse relaation lopussa % > -->
+  <% ratings.each do |rating|%>
+    <li>
+      <span>
+        <%= rating.beer.name %>
+      </span>
+      <span>
+        by <%= link_to rating.user.username, user_path(rating.user.id) %>
+      </span>
+      <span>
+        at <%= rating.created_at %>
+      </span>
+    </li>
+    <% end %>
+</ul>

@@ -3,6 +3,9 @@ class Rating < ApplicationRecord
   belongs_to :user # Käyttäjä luo arvostelun
 
   validates :score, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 50, only_integer: true } # Annetun arvostelun pistemäärän validointia
+  
+  # Muoto https://stackoverflow.com/questions/28459943/using-a-scope-with-last-is-returning-an-associationrelation-in-view
+  scope :recent, -> {order(created_at: :desc).limit(5)}
 
   # "puts" helvettii täältä nii alkaa näkyy jo jotain -.-
   def to_s
