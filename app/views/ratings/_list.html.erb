@@ -9,8 +9,16 @@
   <tbody>
   <% array.each do |element| %>
       <tr>
+      <% if local_assigns[:styles] %>
+        <td><%= link_to element.beer_style, element, class: "btn btn-link btn-sm" %></td>
+        <td><%= element.rating_avg %></td>
+      <% elsif local_assigns[:users] %>
+        <td><%= link_to element.username, element, class: "btn btn-link btn-sm" %></td>
+        <td><%= element.average_rating %></td>
+      <% else %>
         <td><%= link_to element.name, element, class: "btn btn-link btn-sm" %></td>
         <td><%= element.average_rating %></td>
+      <% end %>
       </tr>
   <% end %>
   </tbody>

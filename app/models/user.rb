@@ -25,7 +25,10 @@ class User < ApplicationRecord
     # ratings.order(score: :desc).limit(1).first.beer # optimoitu versio
   end
 
-  def favorite_style
-    return nil if favorite_beer.nil?
+  def self.top(n)
+    sorted_by_rating_in_desc_order = User.all.sort_by{ |s| -(s.average_rating || 0) }
+    # palauta listalta parhaat n kappaletta
+    # miten? ks. http://www.ruby-doc.org/core-2.5.1/Array.html
+    sorted_by_rating_in_desc_order.take(n)
   end
 end

@@ -9,6 +9,17 @@
     <h3>Top 3 beers</h3>
     <%= render 'list', array: @top_beers %>
   </div>
+  <div class="col">
+    <h3>Top 3 styles</h3>
+    <%= render 'list', array: @top_styles, styles: true %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+  <h3>Most active users</h3>
+    <%= render 'list', array: @top_users, users: true %>
+  </div>
 </div>
 
 <div class="row">
