@@ -20,7 +20,8 @@
   <% if @beer.ratings.empty? %>
     Beer has not yet been rated!
   <% else %>
-    <%= @beer.average_rating %> average rating
+    <%= round(@beer.average_rating) %> average rating
+    <!-- <%= @beer.average_rating %> average rating -->
   <% end %>
 </p>
 
