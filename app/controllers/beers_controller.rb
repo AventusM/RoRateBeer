@@ -4,6 +4,8 @@ class BeersController < ApplicationController
 
   # new, edit, create saavat alla olevan metodin sisällöt käyttöönsä näkymiin
   before_action :set_breweries_and_styles, only: [:new, :edit, :create]
+  before_action :ensure_that_admin_does_operation, only: [:destroy]
+
 
   # GET /beers
   # GET /beers.json

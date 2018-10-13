@@ -1,6 +1,7 @@
 class BreweriesController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_admin_does_operation, only: [:destroy]
   # before_action :authenticate, only: [:destroy] # SAMA KUIN before_filter, autentikointi suoritetaan VAIN silloin, kun kutsutaan destroy-metodia
 
   # GET /breweries

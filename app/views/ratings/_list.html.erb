@@ -21,7 +21,7 @@
         <td><%= element.ratings.count %></td>
       <% else %>
         <td><%= link_to element.name, element, class: "btn btn-link btn-sm" %></td>
-        <td><%= element.average_rating %></td>
+        <td><%= round(element.average_rating) %></td>
       <% end %>
       </tr>
   <% end %>

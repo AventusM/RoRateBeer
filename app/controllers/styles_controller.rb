@@ -1,5 +1,6 @@
 class StylesController < ApplicationController
   before_action :set_style, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_admin_does_operation, only: [:destroy]
 
   # GET /styles
   # GET /styles.json
