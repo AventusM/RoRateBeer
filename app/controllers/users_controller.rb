@@ -64,6 +64,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def toggle_banned
+    if (current_user.admin)
+      user = User.find(params[:user_id])
+      user.update_attribute :banned, (not user.banned)
+      redirect_to(user)
+    else
+      redirect_to(breweries_path) # Estetään turha pelleily(?)
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

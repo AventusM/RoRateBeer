@@ -33,4 +33,5 @@
 
 <!-- Seems like @brewery finds id implicitly -->
 <%= link_to 'Edit', edit_brewery_path(@brewery) if current_user%> |
-<%= link_to 'Back', breweries_path %>
+<%= link_to 'Back', breweries_path %> |
+<%= link_to "Toggle activity", toggle_activity_brewery_path(@brewery.id), method: :post %>

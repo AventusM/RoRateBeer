@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
   resources :styles
   resources :beer_clubs
-  resources :users
+
+  # Kutsuu metodia toggle_banned users-controllerissa
+  resources :users do
+    post 'toggle_banned'
+  end
+
   resources :beers
-  resources :breweries
+
+  resources :breweries do
+    post 'toggle_activity', on: :member
+  end
 
   # TÄMÄ KORVAA REST CRUDIN
   resources :ratings, only: [:index, :new, :create, :destroy]

@@ -7,7 +7,11 @@ class SessionsController < ApplicationController
   def create # Copypastetaan tämä muoto suoraan materiaalista selkeyden vuoksi
     user = User.find_by username: params[:username]
     # tarkastetaan että käyttäjä olemassa, ja että salasana on oikea
-    if (user && user.authenticate(params[:password]))
+    if user.banned
+      # VKO 6, teht 11-12
+      redirect_to(signin_path, notice: "The account has been banned, contact administrators for more information")
+      # VKO 6, teht 11-12
+    elsif (user && user.authenticate(params[:password]))
       session[:user_id] = user.id
       redirect_to(user_path(user.id), notice: "Welcome back!")
     else

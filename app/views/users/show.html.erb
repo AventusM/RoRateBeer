@@ -4,10 +4,22 @@
 <div class="userIntro">
   <h2>
     <%= @user.username %>
+    <% if @user.banned %>
+      <span class="badge badge-info">banned</span>
+    <% end %>
   </h2>
-  <!--<p>
-    <%= @user.average_rating %>
-  </p>-->
+
+  <% if current_user && current_user.admin %>
+    <hr>
+    <!-- Laiska tyyli, laitetaan nyt tällä kertaa tänne -->
+    <b style="margin-right: 50px">Mod options</b>
+    <% if @user.banned %>
+      <%= link_to "Unban", user_toggle_banned_path(@user.id), method: :post, class: "btn btn-primary btn-link" %>
+    <% else %>
+      <%= link_to "Ban", user_toggle_banned_path(@user.id), method: :post, class: "btn btn-danger" %>
+    <% end %>
+  <% end %>
+  <hr>
 </div>
 
 <div class="memberships">

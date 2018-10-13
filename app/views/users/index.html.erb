@@ -13,8 +13,13 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.username %></td>
-        <td><%= link_to 'Show', user %></td>
+        <td>
+          <% if current_user and current_user.admin and user.banned %> <!-- laitoin ehtoon myös current_userin 1. ehdoksi, muuten herjaa taas nil, kun adminiä ei voi tarkistaa muuten... -->
+            <span class="badge badge-danger">Banned</span>
+          <% end %>
+            <%= user.username %>
+        </td>
+        <td><%= link_to 'Show', user, class: "btn btn-link btn-sm" %></td>
         <!-- <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
