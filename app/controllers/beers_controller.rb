@@ -11,6 +11,14 @@ class BeersController < ApplicationController
   # GET /beers.json
   def index
     @beers = Beer.all
+
+    order = params[:order] || 'name' # order nil? -> oletusarvoinen järjestys nimen mukaan
+  
+    @beers = case order
+      when 'name' then @beers.sort_by{ |b| b.name }
+      when 'brewery' then @beers.sort_by{ |b| b.brewery.name }
+      when 'style' then @beers.sort_by{ |b| b.style.beer_style }
+    end
   end
 
   # GET /beers/1
