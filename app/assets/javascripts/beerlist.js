@@ -40,7 +40,6 @@ document.addEventListener("turbolinks:load", () => {
     e.preventDefault()
     BEERS.sort_by_name()
     BEERS.show();
-    
   })
 
   $("#style").click((e) => {
