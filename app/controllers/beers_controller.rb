@@ -1,5 +1,5 @@
 class BeersController < ApplicationController
-  before_action :ensure_that_signed_in, except: [:index, :show] # HUOM WHITELIST!!!
+  before_action :ensure_that_signed_in, except: [:index, :show, :list] # HUOM WHITELIST!!!
   before_action :set_beer, only: [:show, :edit, :update, :destroy]
 
   # new, edit, create saavat alla olevan metodin sisällöt käyttöönsä näkymiin
@@ -88,6 +88,10 @@ class BeersController < ApplicationController
       format.html { redirect_to beers_url, notice: 'Beer was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  # Javascriptiä varten
+  def list
   end
 
   private

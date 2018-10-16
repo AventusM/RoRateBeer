@@ -1,13 +1,18 @@
 class RatingsController < ApplicationController
   def index
-    # @ratings = Rating.all
     @top_breweries = Brewery.top(3)
     @top_beers = Beer.top(3)
     @most_recent_ratings = Rating.recent
     @top_styles = Style.top(3)
     @top_users = User.top(3)
     # raise
-    render :index
+
+    @ratings = Rating.all
+    # Päästään käsiksi sivulle ratings.json ilman jbuilderin käyttöä näkymissä (joka on täyttä hepreaa btw)
+    respond_to do |format|
+      format.html { } # renderöidään oletusarvoinen template
+      format.json { render json: @ratings }
+    end
   end
 
   def new

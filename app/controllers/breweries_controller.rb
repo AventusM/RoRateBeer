@@ -1,5 +1,5 @@
 class BreweriesController < ApplicationController
-  before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :ensure_that_signed_in, except: [:index, :show, :list]
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
   before_action :ensure_that_admin_does_operation, only: [:destroy]
   # before_action :authenticate, only: [:destroy] # SAMA KUIN before_filter, autentikointi suoritetaan VAIN silloin, kun kutsutaan destroy-metodia
@@ -7,7 +7,7 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
-    # @breweries = Brewery.all
+    @breweries = Brewery.all # Vaaditaan, jotta breweries.json - polku antaisi dataa
     # @active_breweries = Brewery.where(active: true)
     # @retired_breweries = Brewery.where(active: [nil, false])
     @active_breweries = Brewery.active
@@ -80,6 +80,10 @@ class BreweriesController < ApplicationController
     new_status = brewery.active? ? "active" : "retired"
   
     redirect_to brewery, notice:"brewery activity status changed to #{new_status}"
+  end
+
+  # Javascriptiä varten
+  def list
   end
 
   private # rubocop herjaa jos ei riviä ylä- ja alapuolella
