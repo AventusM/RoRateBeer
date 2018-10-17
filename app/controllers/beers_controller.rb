@@ -10,7 +10,8 @@ class BeersController < ApplicationController
   # GET /beers
   # GET /beers.json
   def index
-    @beers = Beer.all
+    # @beers = Beer.all # Käytännössä jokaista erillistä olutta kohti tehdään oma kysely sekä styles- että breweries tauluun (materiaali)
+    @beers = Beer.includes(:brewery, :style).all
 
     order = params[:order] || 'name' # order nil? -> oletusarvoinen järjestys nimen mukaan
   

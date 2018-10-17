@@ -4,7 +4,10 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    # @users = User.all
+    # @users = User.includes(:ratings).all
+    @users = User.includes(:beers).all # Tämä itseasiassa tuottaa saman tuloksen kuin alempi ratkaisu (includes ratings, beers)
+    # @users = User.includes(:ratings, :beers).all # Nyt tietokantahaku suoritetaan vain kerran (ratingseille ja beerseille yhdet siis). Muuten jokaista riviä kohti tehdään kokonaishaku (näkyy minirackprofileristä)
   end
 
   # GET /users/1
