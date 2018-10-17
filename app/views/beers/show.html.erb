@@ -1,4 +1,4 @@
-
+<% cache @beer do %> 
 
 <p>
   <strong>Name:</strong>
@@ -24,6 +24,8 @@
     <!-- <%= @beer.average_rating %> average rating -->
   <% end %>
 </p>
+
+<% end %>
 
 <% if current_user %>
   <h5>give a rating:</h5>

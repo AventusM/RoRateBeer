@@ -5,7 +5,9 @@ class Beer < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :style
 
-  belongs_to :brewery
+  belongs_to :brewery, touch: true # Yksittäisen oluen cachays. touch:true --> oluen muutos päivittää Yksittäisen panimon cachen automaattisesti
+
+  
   has_many :ratings, dependent: :destroy # Nyt, jos jokin olut poistetaan, niin siihen liittyvät ratingit poistetaan myös (ratingeilla belongs_to: beer)
   has_many :raters, through: :ratings, source: :user # Monesta-moneen-yhteys arvostelujen kautta käyttäjiin. Beer.users sijasta käytetään nimitystä Beer.raters, kun source: :user 
   

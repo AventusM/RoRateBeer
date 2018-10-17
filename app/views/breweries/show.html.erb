@@ -1,4 +1,5 @@
-
+<!-- yksittäisen panimon cachays -->
+<% cache @brewery do %> 
 
 <h2>
   <%= @brewery.name%>
@@ -28,6 +29,9 @@
     <%= round(@brewery.average_rating) %> average rating
   <% end %>
 </p>
+
+<% end %>
+<!-- END yksittäisen panimon cachays -->
 
 <!-- Tuo esiin consolitulostuksen <%= @brewery.beers.to_a %> -->
 
