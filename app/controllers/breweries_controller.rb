@@ -7,6 +7,8 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
+    return if request.format.html? && fragment_exist?('brewerylist')
+
     @breweries = Brewery.all # Vaaditaan, jotta breweries.json - polku antaisi dataa
     # @active_breweries = Brewery.where(active: true)
     # @retired_breweries = Brewery.where(active: [nil, false])
@@ -36,6 +38,8 @@ class BreweriesController < ApplicationController
   # POST /breweries
   # POST /breweries.json
   def create
+    expire_fragment('brewerylist')
+
     @brewery = Brewery.new(brewery_params)
 
     respond_to do |format|
@@ -52,6 +56,8 @@ class BreweriesController < ApplicationController
   # PATCH/PUT /breweries/1
   # PATCH/PUT /breweries/1.json
   def update
+    expire_fragment('brewerylist')
+
     respond_to do |format|
       if @brewery.update(brewery_params)
         format.html { redirect_to @brewery, notice: 'Brewery was successfully updated.' }
@@ -66,6 +72,8 @@ class BreweriesController < ApplicationController
   # DELETE /breweries/1
   # DELETE /breweries/1.json
   def destroy
+    expire_fragment('brewerylist')
+
     @brewery.destroy
     respond_to do |format|
       format.html { redirect_to breweries_url, notice: 'Brewery was successfully destroyed.' }
@@ -74,6 +82,8 @@ class BreweriesController < ApplicationController
   end
 
   def toggle_activity
+    expire_fragment('brewerylist')
+    
     brewery = Brewery.find(params[:id])
     brewery.update_attribute :active, (not brewery.active)
   

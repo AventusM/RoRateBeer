@@ -1,5 +1,7 @@
 <h1>Breweries</h1>
 
+<% cache 'brewerylist', skip_digest: true do %>
+
 <h2>Active</h2>
 
 <p> Number of active breweries: <%= @active_breweries.count %> </p>
@@ -43,6 +45,8 @@
   <% end %>
   </tbody>
 </table>
+
+<% end %>
 <!-- beers_path, new_beer_path yms yleisesti käytössä railsin magian avulla?? -->
 <!-- beers_path, new_beer_path yms yleisesti käytössä railsin magian avulla?? -->
 <%= link_to 'New Brewery', new_brewery_path if current_user%> |
